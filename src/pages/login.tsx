@@ -1,38 +1,38 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import bgImage from "../assets/image/login1.png";
 import { AnimatePresence } from "framer-motion";
 import { usePasswordToggle } from "../hooks/usePasswordToggle";
 import LottieLoader from "../utils/LottieLoader";
-import { useAxiospublic } from "../hooks/useAxiospublic";
+import { useAuth } from "../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
 
-const login = () => {
+const Login = () => {
   const navigate = useNavigate();
-  const axiosPublicUrl = useAxiospublic();
+  const { login } = useAuth();
   const [loading, setLoading] = useState(false);
   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   const [passwordType, ToggleIcon] = usePasswordToggle();
-  const [formData, setFormData] = useState({ adminemail: "", password: "" });
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  // console.log(login);
 
   useEffect(() => {
-    const checkAuth = async () => {
-      const adminData = localStorage.getItem("admin");
-      if (adminData) {
-        try {
-          await axiosPublicUrl.get("/api/dashboard");
-          navigate("/admin/home", { replace: true });
-          return;
-        } catch (error) {
-          localStorage.removeItem("admin");
-        }
-      }
-      setIsCheckingAuth(false);
-    };
+    const token = localStorage.getItem("accessToken");
 
-    checkAuth();
-  }, [navigate, axiosPublicUrl]);
+    if (token) {
+      navigate("/", {
+        replace: true,
+      });
+      return;
+    }
+
+    setIsCheckingAuth(false);
+  }, [navigate]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -41,53 +41,27 @@ const login = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const { adminemail, password } = formData;
 
-    if (!adminemail || !password) {
-      toast.error("Missing credentials", {
-        description: "Please enter both email and password.",
-      });
+    if (!formData.email || !formData.password) {
+      toast.error("Please enter email and password.");
       return;
     }
 
-    setLoading(true);
     try {
-      const response = await axiosPublicUrl.post("/api/adminlogin", {
-        email: adminemail.trim(),
-        password: password.trim(),
+      setLoading(true);
+
+      await login({
+        email: formData.email.trim(),
+        password: formData.password.trim(),
       });
 
-      const { adminInfo } = response.data;
-      if (response.status === 200 && adminInfo) {
-        localStorage.setItem(
-          "admin",
-          JSON.stringify({
-            adminId: adminInfo.adminId,
-            role: adminInfo.role,
-            adminEmail: adminInfo.adminEmail,
-          }),
-        );
-        toast.success("Welcome, Admin!", {
-          description: "You have successfully logged in.",
-          duration: 3000,
-        });
-        navigate("/admin/home", { replace: true });
-      } else {
-        throw new Error("Invalid response");
-      }
-    } catch (error: unknown) {
-      let message = "Invalid email or password. Please try again.";
-      if (
-        error &&
-        typeof error === "object" &&
-        "response" in error &&
-        (error as { response?: { data?: { message?: string } } }).response?.data
-          ?.message
-      ) {
-        message = (error as { response: { data: { message: string } } })
-          .response.data.message;
-      }
-      toast.error("Login failed", { description: message });
+      toast.success("Login Successful");
+
+      navigate("/", {
+        replace: true,
+      });
+    } catch (error: any) {
+      toast.error(error?.response?.data?.message ?? "Login failed.");
     } finally {
       setLoading(false);
     }
@@ -154,9 +128,9 @@ const login = () => {
                   </svg>
                   <input
                     type="email"
-                    name="adminemail"
-                    id="adminemail"
-                    value={formData.adminemail}
+                    name="email"
+                    id="email"
+                    value={formData.email}
                     onChange={handleChange}
                     autoComplete="username"
                     disabled={loading}
@@ -268,4 +242,4 @@ const login = () => {
   );
 };
 
-export default login;
+export default Login;
