@@ -45,7 +45,7 @@ export const menuSections: MenuSection[] = [
         label: "Products",
         icon: <Package2 size={20} />,
         submenu: [
-          { label: "All Products", to: "/all-product" },
+          { label: "All Products", to: "/products" },
           { label: "Offers Products", to: "/offers" },
         ],
       },

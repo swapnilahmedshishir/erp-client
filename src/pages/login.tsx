@@ -30,7 +30,6 @@ const Login = () => {
       });
       return;
     }
-
     setIsCheckingAuth(false);
   }, [navigate]);
 

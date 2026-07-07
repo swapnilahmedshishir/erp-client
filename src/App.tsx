@@ -3,6 +3,8 @@ import Login from "./pages/login";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import DashboardLayout from "./layouts/DashboardLayout";
 import Dashboard from "./pages/Dashboard";
+import Products from "./pages/Products";
+import AddProduct from "./pages/AddProduct";
 
 function App() {
   return (
@@ -19,6 +21,8 @@ function App() {
           }
         >
           <Route path="/" element={<Dashboard />} />
+          <Route path="/products" element={<Products />} />
+          <Route path="/products/create" element={<AddProduct />} />
         </Route>
       </Routes>
     </>
