@@ -35,12 +35,6 @@ const productSchema = z
     message: "Selling price must be greater than or equal to purchase price.",
   });
 
-type ProductFormValues = z.infer<typeof productSchema>;
-
-/* -------------------------------------------------------------------------- */
-/*                                   Props                                    */
-/* -------------------------------------------------------------------------- */
-
 interface ProductFormProps {
   defaultValues?: IProduct;
 
@@ -70,12 +64,15 @@ const ProductForm = ({
     [defaultValues],
   );
 
+  type ProductFormInput = z.input<typeof productSchema>;
+  type ProductFormValues = z.output<typeof productSchema>;
+
   const {
     register,
     handleSubmit,
     formState: { errors },
     reset,
-  } = useForm<ProductFormValues>({
+  } = useForm<ProductFormInput, unknown, ProductFormValues>({
     resolver: zodResolver(productSchema),
     defaultValues: formDefaultValues,
   });

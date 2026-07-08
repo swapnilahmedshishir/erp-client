@@ -4,12 +4,10 @@ import {
   Package2,
   Users,
   FileText,
-  Mail,
   Settings,
   Bell,
 } from "lucide-react";
-
-export type UserRole = "ADMIN" | "MANAGER" | "EMPLOYEE";
+import type { UserRole } from "../../types/auth";
 
 export interface SubMenuItem {
   label: string;

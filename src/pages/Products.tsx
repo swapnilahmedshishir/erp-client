@@ -11,6 +11,7 @@ import Pagination from "../components/common/Pagination";
 import Modal from "../components/common/Modal";
 
 import { useDeleteProduct, useProducts } from "../hooks/useProducts";
+import { toast } from "sonner";
 
 const Products = () => {
   const [search, setSearch] = useState("");

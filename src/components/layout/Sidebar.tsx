@@ -4,7 +4,6 @@ import { useLocation, NavLink, Link, useNavigate } from "react-router-dom";
 import { ChevronDown, ChevronLeft, ChevronRight, LogOut } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { menuSections, type MenuItem } from "./sidebarMenuConfig";
-import axios from "axios";
 import { toast } from "sonner";
 import { cloneElement, isValidElement } from "react";
 import type { ReactElement } from "react";

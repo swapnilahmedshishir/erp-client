@@ -13,8 +13,8 @@ import NotFound from "./pages/NotFound";
 
 import DashboardLayout from "./layouts/DashboardLayout";
 import ProtectedRoute from "./routes/ProtectedRoute";
-import Login from "./pages/Login";
 import Settings from "./pages/Settings";
+import Login from "./pages/Login";
 
 function App() {
   return (
