@@ -14,7 +14,7 @@ import NotFound from "./pages/NotFound";
 import DashboardLayout from "./layouts/DashboardLayout";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Settings from "./pages/Settings";
-import Login from "./pages/Login";
+import Login from "./pages/login";
 
 function App() {
   return (
