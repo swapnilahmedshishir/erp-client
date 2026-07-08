@@ -106,38 +106,114 @@ Three user roles are supported:
 
 # 📁 Project Structure
 
-```text
-src
+# Frontend (erp-client)
+
+```
+erp-client
 │
-├── api
-├── assets
-├── components
-│   ├── common
-│   ├── dashboard
-│   ├── layout
-│   ├── product
-│   └── sales
+├── public
 │
-├── features
+├── src
+│   │
+│   ├── api
+│   │   ├── axios.ts
+│   │   ├── auth.api.ts
+│   │   ├── product.api.ts
+│   │   ├── sale.api.ts
+│   │   └── dashboard.api.ts
+│   │
+│   ├── assets
+│   │
+│   ├── components
+│   │   │
+│   │   ├── common
+│   │   │   ├── Button.tsx
+│   │   │   ├── Input.tsx
+│   │   │   ├── Modal.tsx
+│   │   │   ├── Loader.tsx
+│   │   │   ├── Pagination.tsx
+│   │   │   └── SearchBox.tsx
+│   │   │
+│   │   ├── layout
+│   │   │   ├── Navbar.tsx
+│   │   │   ├── Sidebar.tsx
+│   │   │   └── Header.tsx
+│   │   │
+│   │   ├── dashboard
+│   │   │   ├── StatsCard.tsx
+│   │   │   └── LowStockTable.tsx
+│   │   │
+│   │   ├── product
+│   │   │   ├── ProductTable.tsx
+│   │   │   ├── ProductForm.tsx
+│   │   │   ├── ProductRow.tsx
+│   │   │   └── ProductImage.tsx
+│   │   │
+│   │   └── sales
+│   │       ├── SalesForm.tsx
+│   │       ├── ProductSelector.tsx
+│   │       └── SalesTable.tsx
+│   │
+│   ├── features
+│   │   ├── auth
+│   │   │   └── authSlice.ts
+│   │   └── user
+│   │
+│   ├── hooks
+│   │   ├── useAuth.ts
+│   │   ├── useProducts.ts
+│   │   ├── useSales.ts
+│   │   └── useDashboard.ts
+│   │
+│   ├── layouts
+│   │   ├── DashboardLayout.tsx
+│   │   └── AuthLayout.tsx
+│   │
+│   ├── pages
+│   │   ├── Login.tsx
+│   │   ├── Dashboard.tsx
+│   │   ├── Products.tsx
+│   │   ├── AddProduct.tsx
+│   │   ├── EditProduct.tsx
+│   │   ├── CreateSale.tsx
+│   │   └── NotFound.tsx
+│   │
+│   ├── routes
+│   │   ├── AppRoutes.tsx
+│   │   └── ProtectedRoute.tsx
+│   │
+│   ├── services
+│   │   ├── auth.service.ts
+│   │   ├── product.service.ts
+│   │   ├── sale.service.ts
+│   │   └── dashboard.service.ts
+│   │
+│   ├── store
+│   │   ├── index.ts
+│   │   └── provider.tsx
+│   │
+│   ├── types
+│   │   ├── auth.ts
+│   │   ├── product.ts
+│   │   ├── sale.ts
+│   │   └── common.ts
+│   │
+│   ├── utils
+│   │   ├── formatPrice.ts
+│   │   ├── token.ts
+│   │   ├── helpers.ts
+│   │   └── constants.ts
+│   │
+│   ├── App.tsx
+│   ├── main.tsx
+│   └── index.css
 │
-├── hooks
-│
-├── layouts
-│
-├── pages
-│
-├── routes
-│
-├── services
-│
-├── store
-│
-├── types
-│
-├── utils
-│
-├── App.tsx
-└── main.tsx
+├── .env
+├── .gitignore
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
 ```
 
 ---
@@ -147,7 +223,7 @@ src
 ## 1. Clone Repository
 
 ```bash
-git clone https://github.com/your-username/erp-client.git
+git clone https://github.com/swapnilahmedshishir/erp-client.git
 ```
 
 ```bash
@@ -172,6 +248,7 @@ Example:
 
 ```env
 VITE_API_URL=http://localhost:5001/api/v1
+VITE_API_URL=https://erp-server-dxkg.onrender.com/api/v1
 ```
 
 Replace the URL with your deployed backend URL when running in production.
@@ -188,6 +265,7 @@ Application will run at
 
 ```
 http://localhost:5173
+https://erp-shop.netlify.app/
 ```
 
 ---
@@ -303,6 +381,7 @@ Default Base URL:
 
 ```
 http://localhost:5001/api/v1
+https://erp-server-dxkg.onrender.com/api/v1
 ```
 
 Configure the production API URL using the `.env` file.
