@@ -90,13 +90,15 @@ const Login = () => {
           <div className="h-0.5 bg-linear-to-r from-gray-900 via-gray-500 to-gray-900" />
           <div className="px-8 py-10">
             {/* Brand */}
-            <div className="text-center mb-8">
+            <div className="mb-8 flex items-center justify-center gap-3">
               <img
                 src="/logo.png"
-                className="mx-auto mb-4 h-12"
-                alt="brand Logo"
+                className="h-9 w-auto object-contain"
+                alt="ERP SHOP Logo"
               />
-              <p>ERP SHOP</p>
+              <span className="text-xl font-bold tracking-tight text-slate-900 dark:text-slate-50">
+                ERP SHOP
+              </span>
             </div>
             <form
               onSubmit={handleSubmit}

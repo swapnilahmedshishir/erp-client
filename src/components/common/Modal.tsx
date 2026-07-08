@@ -37,7 +37,7 @@ const Modal = ({
           <button
             type="button"
             onClick={onClose}
-            className="rounded-md p-2 transition hover:bg-slate-100"
+            className="rounded-md p-2 transition hover:bg-slate-100 cursor-pointer"
           >
             <X size={18} />
           </button>
